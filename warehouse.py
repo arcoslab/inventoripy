@@ -561,7 +561,7 @@ def main():
             print wh
 
     if args.feedprinter:
-        os.system("textlabel \"       \" | pt1230 -c -m -b -d /dev/usb/lp1")
+        os.system("textlabel \"       \" | pt1230 -c -m -b -d "+args.device)
 
 if __name__=="__main__":
     main()
