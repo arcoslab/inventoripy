@@ -63,7 +63,7 @@ def capture_picture(full_picture_filename):
         display.blit(image, (0,0))
         pygame.display.flip()
         #sleep(2)
-        ready=raw_input("Press \"y\" when satisfied. Press enter to repeat capture")
+        ready=raw_input("Press \"y\" when satisfied. Press enter to repeat capture: ")
 
     pygame.display.quit()
 
@@ -127,7 +127,10 @@ class Warehouse(object):
             if data in self.data["locations"]:
                 self.data["locations"].remove(data)
             else:
-                print "Error: data not found neither in items nor in locatiosn"
+		if data in self.data["users"]:
+		    self.data["users"].remove(data)
+		else:
+                    print "Error: data not found neither in items, in locations nor in users"
 
     def search_keyword(self, keyword):
         print "searching for entries in database with keyword: ", keyword
@@ -482,9 +485,9 @@ def main():
             print "Searching for keyword: ", args.keyword
             res=wh.search_keyword(args.keyword)
             if len(res)==0:
-                print "No results"
+                print "\nNo results"
             else:
-                print "Search results:"
+                print "\nSearch results:"
                 for i, j in enumerate(res):
                     print i, ": ", j
                 cmd=raw_input("Press the entry number to select from database or press enter to quit\n")
